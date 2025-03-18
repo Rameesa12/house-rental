@@ -1,0 +1,49 @@
+{% extends 'admin_module/admin_index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+    <style>
+        tr{
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+<table width="815" border="1" class="table table-bordered" id="dataTable">
+  <tr>
+    <th  scope="col">Sl no</th>
+    <th  scope="col">Location</th>
+    <th  scope="col">Rent</th>
+    <th  scope="col">Image1</th>
+    <th  scope="col">Image2</th>
+    <th  scope="col">Image3</th>
+    <th  scope="col">Information</th>
+    <th  scope="col">Property Type</th>
+    <th  scope="col">Rating</th>
+
+  </tr>
+  {% for i in data %}
+
+  <tr>
+    <td>{{ forloop.counter}}&nbsp;</td>
+    <td><a href="https://www.google.com/maps/?q={{ i.latitude }}{{ i.longitude }}"class="btn btn-dark" style="background-color:#947054">Track</a></td>
+    <td>{{i.rent}}&nbsp;</td>
+    <td><img src="{{ i.image1}}" height="100" width="100"> </td>
+    <td><img src="{{ i.image2}}" height="100" width="100"> </td>
+    <td><img src="{{ i.image3}}" height="100" width="100"> </td>
+    <td>{{ i.information}}&nbsp;</td>
+    <td>{{ i.type}}&nbsp;</td>
+    <td><a href="/view_rating/{{ i.id }}#home" class="btn btn-dark" style="background-color:#947054">view Rating</a> </td>
+  </tr>
+  {% endfor %}
+
+</table>
+
+</body>
+</html>
+{% endblock %}

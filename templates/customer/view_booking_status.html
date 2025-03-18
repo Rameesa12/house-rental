@@ -1,0 +1,51 @@
+{% extends 'customer/customer_index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+ <style>
+        tr{
+            color: white;
+        }
+    </style>
+<body>
+<table width="390" border="1" class="table table-bordered" id="dataTable">
+  <tr>
+    <th width="20" scope="col">no</th>
+    <th width="37" scope="col">date</th>
+    <th width="78" scope="col">owner_info</th>
+    <th width="49" scope="col">status</th>
+    <th width="77" scope="col">room_info</th>
+    <th width="77" scope="col">image</th>
+    <th width="89" scope="col"></th>
+    <th width="89" scope="col"></th>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ i.date }}</td>
+    <td>NAME:{{ i.ROOM.OWNER.name }}<br>EMAIL:{{ i.ROOM.OWNER.email }}<br>PHONE:{{ i.ROOM.OWNER.phone }}</td>
+    <td>{{ i.status }}</td>
+    <td>INFORMATION:{{ i.ROOM.information }}<br>TYPE:{{ i.ROOM.type }}<br>RENT:{{ i.ROOM.rent }}</td>
+    <td><img src="{{ i.ROOM.image1 }}" width="50px" height="50px"></td>
+      {% if i.status == 'pending' %}
+      <td><div style="color: red; font-weight: bold">waiting for approval</div></td>
+      {% elif  i.status == 'approved' and i.payment_status == 'pending'%}
+    <td><a href="/user_payment/{{ i.id }}/{{ i.amount }}" class="btn btn-success" style="width: 200px">pay now</a></td>
+       {% else %}
+          <td><div style="color: springgreen; font-weight: bold">payment completed</div><br><a href="/customer_sen_rating/{{ i.ROOM.id }}">send rating</a></td>
+      {% endif %}
+      <td><div><a href="/customer_chatt/{{ i.ROOM.OWNER.id }}" class="btn btn-danger" style="width: 100px">chat</a></div></td>
+
+  </tr>
+    {% endfor %}
+</table>
+
+
+</body>
+</html>
+{% endblock %}
+

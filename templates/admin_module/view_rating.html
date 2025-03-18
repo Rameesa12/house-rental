@@ -1,0 +1,55 @@
+{% extends 'admin_module/admin_index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+    <style>
+        tr{
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+<table width="584" border="1" class="table table-bordered" id="dataTable">
+  <tr>
+
+    <th scope="col">Sl no</th>
+        <th  scope="col">User Info</th>
+    <th  scope="col">Rating</th>
+    <th  scope="col">Date</th>
+
+
+  </tr>
+  {% for i in data %}
+
+  <tr>
+    <td>{{ forloop.counter}}&nbsp;</td>
+          <td>Name:{{ i.CUSTOMER.name}}<br>Phone:&nbsp;{{i.CUSTOMER.phone}}<br>Email:{{i.CUSTOMER.email}}</td>
+
+    <td style="color: yellow">
+      {% if i.rating == '1' %}
+        ★
+      {% elif i.rating == '2' %}
+        ★★
+      {% elif i.rating == '3' %}
+        ★★★
+      {% elif i.rating == '4' %}
+        ★★★★
+      {% elif i.rating == '5' %}
+        ★★★★★
+      {% endif %}
+    </td>
+    <td>{{i.date}}&nbsp;</td>
+
+  </tr>
+  {% endfor %}
+
+</table>
+
+</body>
+</html>
+{% endblock %}

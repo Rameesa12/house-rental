@@ -1,0 +1,121 @@
+{% extends 'owner/owner_index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+   <style>
+        tr{
+            color: white;
+        }
+       input{
+           color: wheat;
+       }
+        .table-container {
+            overflow: scroll;
+            max-height: 600px; /* Adjust the height as per your need */
+        }
+    </style>
+<body>
+<form action="/add_house_post" method="post" enctype="multipart/form-data">
+<div class="table-container">
+<table width="100" border="10" class="table table-bordered" height="300px">
+  <tr>
+    <th width="100" scope="col">RENT</th>
+    <th width="100" scope="col"><label for="textfield"></label>
+      <input type="number" name="textfield" id="textfield" class="form-control"  required style="color: white"/></th>
+  </tr>
+  <tr>
+    <td>picture</td>
+    <td><label for="textfield2"></label>
+      <input type="file" name="textfield2" id="textfield2"  required /></td>
+  </tr>
+     <tr>
+    <td>picture</td>
+    <td>
+      <input type="file" name="pic2" id="pic2"  required /></td>
+  </tr>
+     <tr>
+    <td>picture</td>
+    <td>
+      <input type="file" name="pic3" id="pic3"  required /></td>
+  </tr>
+  <tr>
+    <td>information</td>
+    <td><label for="textfield3"></label>
+      <input type="text" name="textfield3" id="textfield3" class="form-control" style="color: white"/></td>
+  </tr>
+  <tr>
+    <td>type</td>
+    <td><label for="textfield4"></label>
+      <input type="text" name="textfield4" id="textfield4"  class="form-control" required style="color: white"/></td>
+  </tr>
+
+   <tr>
+       <input type="hidden" name="latitude" id="lt" />
+  <input type="hidden" name="longitude" id="lg" />
+       <td colspan="2" ><div id="gmap" style="width: 1200px; height: 100px"></div></td>
+   </tr>
+
+  <tr>
+    <td colspan="2"><div align="center" ><input type="submit" name="button" id="button" value="add" class="btn-success" style="width: 50px"/></div></td>
+    </tr>
+</table>
+
+</div>
+</form>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6v5-2uaq_wusHDktM9ILcqIrlPtnZgEk&sensor=false"></script>
+<script type="text/javascript">
+    var map, marker;
+    initialize();
+
+    function initialize() {
+        var myLatlng = new google.maps.LatLng(11.868536, 75.363197);
+        var myOptions = {
+            zoom: 7,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("gmap"), myOptions);
+        marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map
+        });
+
+        google.maps.event.addListener(map, "click", function(event) {
+            var clickLat = event.latLng.lat();
+            var clickLon = event.latLng.lng();
+            document.getElementById("lt").value = clickLat.toFixed(5);
+            document.getElementById("lg").value = clickLon.toFixed(5);
+            marker.setPosition(new google.maps.LatLng(clickLat, clickLon));
+        });
+
+        GetMylocation();
+    }
+
+    function GetMylocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function showPosition(position) {
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+        document.getElementById("lt").value = lat;
+        document.getElementById("lg").value = lon;
+
+        var myLatlng = new google.maps.LatLng(lat, lon);
+        map.setCenter(myLatlng);
+        map.setZoom(14);
+        marker.setPosition(myLatlng);
+    }
+</script>
+
+</body>
+</html>
+{% endblock %}

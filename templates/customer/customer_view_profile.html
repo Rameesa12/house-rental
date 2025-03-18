@@ -1,0 +1,59 @@
+{% extends 'customer/customer_index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+ <style>
+        tr{
+            color: white;
+        }
+     th{
+         font-weight: bolder;
+     }
+    </style>
+<body>
+<table width="342" border="1" class="table table-bordered" id="dataTable">
+  <tr>
+    <th width="165" scope="col">name</th>
+    <td width="161" scope="col">{{ data.name }}</td>
+  </tr>
+  <tr>
+    <th>phone</th>
+    <td>{{ data.phone }}</td>
+  </tr>
+  <tr>
+    <th>email</th>
+    <td>{{ data.email }}</td>
+  </tr>
+  <tr>
+    <th>address</th>
+    <td>PLACE: {{ data.place }}<br> POST: {{ data.post }}<br> PIN: {{ data.pin }}</td>
+  </tr>
+  <tr>
+    <th>image</th>
+    <td><img src="{{ data.image }}" width="100px" height="100px"> </td>
+  </tr>
+  <tr>
+    <th>Age</th>
+    <td>{{ data.age }}</td>
+  </tr>
+
+
+  <tr>
+    <th>proof</th>
+    <td><a href="{{ data.proof }}" class="btn btn-outline-info">click</a></td>
+  </tr>
+     <tr>
+    <th>location</th>
+    <td><a href="https://www.google.com/maps/?q={{ data.latitude }},{{ data.longitude }}" class="btn btn-outline-info">click</a></td>
+  </tr>
+
+
+</table>
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'admin_module/admin_index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+    <style>
+        tr{
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+<table width="452" border="1" class="table table-bordered" id="dataTable">
+  <tr>
+    <th scope="col">Sl no</th>
+    <th scope="col">Name</th>
+    <th scope="col">Address</th>
+    <th scope="col">Age</th>
+    <th scope="col">Image</th>
+    <th scope="col">Proof</th>
+    <th scope="col">Email</th>
+    <th scope="col">Phone</th>
+    <th scope="col">Location</th>
+
+  </tr>
+  {% for i in data %}
+
+  <tr>
+    <td>{{ forloop.counter}}&nbsp;</td>
+    <td>{{i.name}}&nbsp;</td>
+    <td>{{ i.place}}<br>{{ i.post}}&nbsp;<br>{{i.pin}}</td>
+    <td>{{i.age}}&nbsp;</td>
+    <td><img src="{{i.image}}" width="100px" height="100px">&nbsp;</td>
+    <td><a href="{{ i.proof }}" class="btn btn-dark" style="background-color: #947054">Proof</a></td>
+    <td>{{i.email}}&nbsp;</td>
+    <td>{{i.phone}}&nbsp;</td>
+    <td><a href="https://www.google.com/maps/?q={{ i.latitude }},{{ i.longitude }}"class="btn btn-dark" style="background-color: #947054">Track</a></td>
+
+  </tr>
+  {% endfor %}
+
+</table>
+</body>
+</html>
+{% endblock %}

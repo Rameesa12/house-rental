@@ -1,0 +1,55 @@
+{% extends 'owner/owner_index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+ <style>
+        tr{
+            color: white;
+        }
+     th{
+         font-weight: bolder;
+     }
+    </style>
+<body>
+<table width="342" border="1" class="table table-bordered" id="dataTable">
+  <tr>
+    <th width="165" scope="col">name</th>
+    <td width="161" scope="col">{{ data.name }}</td>
+  </tr>
+  <tr>
+    <th>phone</th>
+    <td>{{ data.phone }}</td>
+  </tr>
+  <tr>
+    <th>email</th>
+    <td>{{ data.email }}</td>
+  </tr>
+  <tr>
+    <th>pin </th>
+    <td>{{ data.pin }}</td>
+  </tr>
+  <tr>
+    <th>post</th>
+    <td>{{ data.post }}</td>
+  </tr>
+  <tr>
+    <th>place</th>
+    <td>{{ data.place }}</td>
+  </tr>
+
+
+  <tr>
+    <th>proof</th>
+    <td><a href="{{ data.proof }}">click</a></td>
+  </tr>
+
+
+</table>
+
+</body>
+</html>
+{% endblock %}

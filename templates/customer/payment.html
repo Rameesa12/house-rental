@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Other head elements -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+    <script>
+        // Razorpay payment options configuration
+        var options = {
+            key: '{{ razorpay_api_key }}',  // API key passed from backend
+            amount: '{{ amount }}',  // Amount in paise passed from backend (e.g., 10000 INR = 1000000 paise)
+            currency: '{{ currency }}',  // Currency type (INR)
+            name: 'Home rental',
+            description: 'Purchase Description',
+            image: '/static/assets/img/bg-img/feature2.jpg',  // Your logo path
+            prefill: {
+                name: 'Your Name',
+                email: 'your_email@example.com',
+            },
+            theme: {
+                color: '#F37254',  // Custom theme color
+            },
+            handler: function(response) {
+                // This function is triggered when payment is successful
+                console.log(response);
+                alert('Payment successful. Payment ID: ' + response.razorpay_payment_id);
+                window.location = '/customer_view_request';  // Redirect after successful payment
+            },
+            modal: {
+                ondismiss: function() {
+                    console.log('Payment process dismissed by the user.');
+                }
+            }
+        };
+
+        // Create Razorpay payment instance
+        var rzp = new Razorpay(options);
+
+        // Open Razorpay payment window
+        rzp.open();
+    </script>
+</body>
+</html>

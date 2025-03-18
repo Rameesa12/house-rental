@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+{% extends 'owner/owner_index.html' %}
+{% block body %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+ <style>
+        tr{
+            color: white;
+        }
+    </style>
+<body>
+<form action="/update_house_post/{{ data.id }}" method="post" enctype="multipart/form-data">
+<table width="327" border="1" class="table table-bordered">
+  <tr>
+    <th width="171" scope="col">RENT</th>
+    <th width="140" scope="col"><label for="textfield"></label>
+      <input type="text" name="textfield" id="textfield" value="{{ data.rent }}"  class="form-control" required style="color: white"/></th>
+  </tr>
+  <tr>
+    <td>picture</td>
+    <td><label for="textfield2"></label>
+        <img src="{{ data.image1 }}" height="60px" width="60px">
+      <input type="file" name="textfield2" id="textfield2" /></td>
+  </tr>
+     <tr>
+    <td>picture</td>
+    <td><label for="textfield2"></label>
+        <img src="{{ data.image2 }}" height="60px" width="60px">
+      <input type="file" name="pic2" id="pic3" /></td>
+  </tr>
+     <tr>
+    <td>picture</td>
+    <td><label for="textfield2"></label>
+        <img src="{{ data.image3 }}" height="60px" width="60px">
+      <input type="file" name="pic3" id="pic3" /></td>
+  </tr>
+  <tr>
+    <td>information</td>
+    <td><label for="textfield3"></label>
+      <input type="text" name="textfield3" id="textfield3" value="{{ data.information }}" class="form-control" required style="color: white"/></td>
+  </tr>
+  <tr>
+    <td>type</td>
+    <td><label for="textfield4"></label>
+      <input type="text" name="textfield4" id="textfield4" value="{{ data.type }}" class="form-control" required style="color: white"/></td>
+  </tr>
+  <tr>
+    <td colspan="2"><div  align="center"><input type="submit" name="button" id="button" value="update" class="btn btn-success"/></div></td>
+    </tr>
+</table>
+
+</form>
+
+</body>
+</html>
+{% endblock %}

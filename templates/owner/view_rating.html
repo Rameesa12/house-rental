@@ -1,0 +1,49 @@
+{% extends 'owner/owner_index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+ <style>
+        tr{
+            color: white;
+        }
+    </style>
+<body>
+<table width="390" border="1" class="table table-bordered" id="dataTable">
+  <tr>
+    <th width="20" scope="col">no</th>
+    <th width="37" scope="col">date</th>
+    <th width="78" scope="col">user_info</th>
+    <th width="78" scope="col">rating</th>
+
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ i.date }}</td>
+    <td>NAME:{{ i.CUSTOMER.name }}<br>EMAIL:{{ i.CUSTOMER.email }}<br>PHONE:{{ i.CUSTOMER.phone }}</td>
+     <td>{% if i.rating == "0" %}
+        no rating
+      {% elif i.rating == "1" %}
+        <span class="rating">★☆☆☆☆</span>
+      {% elif i.rating == "2" %}
+        <span class="rating">★★☆☆☆</span>
+      {% elif i.rating == "3" %}
+        <span class="rating">★★★☆☆</span>
+      {% elif i.rating == "4" %}
+        <span class="rating">★★★★☆</span>
+      {% elif i.rating == "5" %}
+        <span class="rating">★★★★★</span>
+      {% endif %}</td>
+
+  </tr>
+    {% endfor %}
+</table>
+
+
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'owner/owner_index.html' %}
+{% block body %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+ <style>
+        tr{
+            color: white;
+        }
+    </style>
+<body>
+<table width="390" border="1" class="table table-bordered" id="dataTable">
+  <tr>
+    <th width="20" scope="col">no</th>
+    <th width="37" scope="col">date</th>
+    <th width="78" scope="col">user_info</th>
+    <th width="49" scope="col">status</th>
+    <th width="77" scope="col">room_info</th>
+    <th width="89" scope="col"></th>
+    <th width="89" scope="col"></th>
+  </tr>
+    {% for i in data %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ i.date }}</td>
+    <td>NAME:{{ i.CUSTOMER.name }}<br>EMAIL:{{ i.CUSTOMER.email }}<br>PHONE:{{ i.CUSTOMER.phone }}</td>
+    <td>{{ i.status }}</td>
+    <td>INFORMATION:{{ i.ROOM.information }}<br>TYPE:{{ i.ROOM.type }}<br>RENT:{{ i.ROOM.rent }}</td>
+      {% if i.status == 'approved' or i.status == 'rejected'%}
+      <td><td>
+      {% else %}
+    <td><a href="/approve_request/{{ i.id }}#owner" class="btn btn-success" style="width: 200px">approve</a><br /><br><a href="/reject_request#owner" class="btn btn-danger" style="width: 200px" onclick="return confirm('Are you sure?')">reject</a></td>
+      {% endif %}
+    <td><div><a href="/owner_chatt/{{ i.CUSTOMER.id }}" class="btn btn-danger" style="width: 200px">chat</a></div></td>
+  </tr>
+    {% endfor %}
+</table>
+
+
+</body>
+</html>
+{% endblock %}

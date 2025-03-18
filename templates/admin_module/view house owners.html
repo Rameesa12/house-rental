@@ -1,0 +1,42 @@
+{% extends 'admin_module/admin_index.html' %}
+{% block body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+        <style>
+        tr{
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+<table width="711" border="1" class="table table-bordered" id="dataTable">
+  <tr>
+    <th  scope="col">sl no</th>
+    <th  scope="col">Name</th>
+    <th  scope="col">Address</th>
+    <th  scope="col">Email</th>
+    <th  scope="col">Phone</th>
+    <th  scope="col">Proof</th>
+    <th  scope="col">Approve or Reject</th>
+  </tr>
+  {% for i in data %}
+  <tr>
+    <td >{{ forloop.counter}}&nbsp;</td>
+    <td >{{ i.name}}&nbsp;</td>
+    <td >{{ i.place}}<br>{{ i.post}}&nbsp;<br>{{i.pin}}</td>
+    <td >{{i.email}}&nbsp;</td>
+    <td >{{i.phone}}&nbsp;</td>
+      <td><a href="{{ i.proof }}" class="btn btn-dark" style="background-color: #947054">Proof</a></td>
+    <td><a href="/approve_house_owners/{{ i.LOGIN.id }}" class="btn btn-dark" style="background-color: #947054">Approve</a><br><br>
+    <a href="/reject_house_owners/{{ i.LOGIN.id }}" class="btn btn-danger" onclick="return confirm('Are you sure to reject?')">Reject</a></td>
+  </tr>
+  {% endfor %}
+</table>
+</body>
+</html>
+{% endblock %}

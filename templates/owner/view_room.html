@@ -1,0 +1,107 @@
+{#{% extends 'owner/owner_index.html' %}#}
+{#{% block body %}#}
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+{#<html xmlns="http://www.w3.org/1999/xhtml" xmlns:https="http://www.w3.org/1999/xhtml">#}
+{#<head>#}
+{#<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />#}
+{#<title>Untitled Document</title>#}
+{#</head>#}
+{# <style>#}
+{#        tr{#}
+{#            color: white;#}
+{#        }#}
+{#    </style>#}
+{#<div style="overflow: scroll">#}
+{#<body>#}
+{##}
+{#<table width="200" border="1" class="table table-bordered">#}
+{#  <tr>#}
+{#    <th scope="col">no</th>#}
+{#    <th scope="col">rent</th>#}
+{#    <th scope="col">pic</th>#}
+{#    <th scope="col">information</th>#}
+{#    <th scope="col">type</th>#}
+{#    <th scope="col">location</th>#}
+{#    <th scope="col"></th>#}
+{#    <th scope="col"></th>#}
+{#  </tr>#}
+{#    {% for i in data %}#}
+{#  <tr>#}
+{#    <td>{{ forloop.counter }}</td>#}
+{#    <td>{{ i.rent }}</td>#}
+{#    <td><img src="{{ i.image }}" width="60px" height="60px"></td>#}
+{#    <td>{{ i.information }}</td>#}
+{#    <td>{{ i.type }}</td>#}
+{#    <td><a href="https://www.google.co.in/maps/?q={{ i.latitude }},{{ i.longitude }}">locate</a></td>#}
+{#    <td><a href="/update_house/{{ i.id }}#owner" class="btn btn-success" style="width: 100px">edit</a></td>#}
+{#    <td><a href="/delete_house/{{ i.id }}#owner" class="btn btn-danger" style="width: 100px" onclick="return confirm('Are you sure?')">delete</a></td>#}
+{#  </tr>#}
+{#    {% endfor %}#}
+{#</table>#}
+{##}
+{#</body>#}
+{#</div>#}
+{#</html>#}
+{##}
+{#{% endblock %}#}
+{% extends 'owner/owner_index.html' %}
+
+{% block body %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Untitled Document</title>
+    <style>
+        /* Make sure the table rows have white text */
+        tr {
+            color: white;
+        }
+
+        /* Scrollable container for the table */
+        .table-container {
+            overflow: scroll;
+            max-height: 600px; /* Adjust the height as per your need */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="table-container">
+        <table width="100%" border="1" class="table table-bordered" id="dataTable">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Rent</th>
+                    <th scope="col">Pic1</th>
+                    <th scope="col">Pic2</th>
+                    <th scope="col">Pic3</th>
+                    <th scope="col">Information</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Location</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ i.rent }}</td>
+                        <td><img src="{{ i.image1 }}" width="60px" height="60px"></td>
+                        <td><img src="{{ i.image2 }}" width="60px" height="60px"></td>
+                        <td><img src="{{ i.image3 }}" width="60px" height="60px"></td>
+                        <td>{{ i.information }}</td>
+                        <td>{{ i.type }}</td>
+                        <td><a href="https://www.google.co.in/maps/?q={{ i.latitude }},{{ i.longitude }}">Locate</a></td>
+                        <td><a href="/update_house/{{ i.id }}#owner" class="btn btn-success" style="width: 100px">Edit</a></td>
+                        <td><a href="/delete_house/{{ i.id }}#owner" class="btn btn-danger" style="width: 100px" onclick="return confirm('Are you sure?')">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+{% endblock %}

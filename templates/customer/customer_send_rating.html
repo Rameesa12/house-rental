@@ -1,0 +1,201 @@
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD RATING</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Full page layout */
+        html, body {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Home button styling */
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #03cce6;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .home-button:hover {
+            background-color: #029bb5;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-top: 60px;  /* Increased margin for spacing */
+            margin-bottom: 20px; /* Extra space before the table */
+        }
+
+        /* Table styling */
+        table {
+            margin: 20px auto;  /* Centered table */
+            border-collapse: collapse;
+            width: 60%;
+            background-color: #4e555b;
+            opacity: 0.9;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #DDD;
+            color: wheat;
+        }
+
+        tr:hover {
+            background-color: #D6EEEE;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: calc(100% - 200px); /* Adjusted height to fit other elements */
+        }
+
+        .rating-wrap {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        fieldset.rating {
+            border: none;
+            display: flex;
+            justify-content: center;
+            gap: 10px;  /* Spacing between stars */
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            color: #ddd;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .rating label:before {
+            content: '\f005';
+            font-family: FontAwesome;
+        }
+
+        .rating > input:checked ~ label,
+        .rating:not(:checked) > label:hover,
+        .rating:not(:checked) > label:hover ~ label {
+            color: #2ce679;
+        }
+
+        .rating > input:checked + label:hover,
+        .rating > input:checked ~ label:hover,
+        .rating > label:hover ~ input:checked ~ label,
+        .rating > input:checked ~ label:hover ~ label {
+            color: #2ddc76;
+        }
+
+        #rating-value {
+            margin: 30px auto 10px;
+            width: 110px;
+            padding: 10px 5px;
+            text-align: center;
+            box-shadow: inset 0 0 2px 1px rgba(46, 204, 113, .2);
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #03cce6;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #029bb5;
+        }
+    </style>
+</head>
+<body>
+
+<a href="/customer_home" class="home-button">Home</a>
+<br><br>
+<h1>ADD RATING</h1>
+
+<!-- Sample table for demonstration -->
+
+
+<form method="post" action="/customer_send_rating_post/{{ hid }}">
+    <div class="container">
+        <div class="rating-wrap">
+            <div class="center">
+                <fieldset class="rating">
+                    <input type="radio" name="star" id="star5" value="5" /><label for="star5"></label>
+                    <input type="radio" name="star" id="star4" value="4" /><label for="star4"></label>
+                    <input type="radio" name="star" id="star3" value="3" /><label for="star3"></label>
+                    <input type="radio" name="star" id="star2" value="2" /><label for="star2"></label>
+                    <input type="radio" name="star" id="star1" value="1" /><label for="star1"></label>
+                </fieldset>
+            </div>
+            <h2 id="rating-value">0</h2>
+            <div>
+                <input type="submit" value="SUBMIT">
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    // JavaScript to update rating value dynamically
+    const ratingInputs = document.querySelectorAll('.rating input');
+    const ratingValue = document.getElementById('rating-value');
+
+    ratingInputs.forEach(input => {
+        input.addEventListener('change', () => {
+            ratingValue.textContent = input.value;
+        });
+    });
+</script>
+
+</body>
+</html>
